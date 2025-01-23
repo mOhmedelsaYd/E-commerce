@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 dotenv.config({path: './config.env'});
 const dbConnection = require('./config/database');
-const ApiError = require('./utils/ApiError');
+const apiError = require('./utils/apiError');
 const globalError = require('./middleware/errorMiddleware');
 const mountRoute = require('./routes');
 
@@ -41,7 +41,7 @@ app.all('*', (req, res, next) => {
     // const err = new Error(`can't find this route: ${req.originalUrl}`); // create error for not exists route and pass them to global handling to cutomize them
     // next(err.message);
 
-    next(new ApiError(`can't find this route: ${req.originalUrl}`, 400))
+    next(new apiError(`can't find this route: ${req.originalUrl}`, 400))
 })
 // error global handling middleware   (take error from asyncHandler and customize them)
 app.use(globalError)
