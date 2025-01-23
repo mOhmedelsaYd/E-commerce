@@ -64,7 +64,7 @@ exports.getAll = (model, modelName = '') =>
         filter = req.filterObj;
     }
     const documentCount = await model.countDocuments();
-    const apiFeatures = new ApiFeatures(model.find(filter), req.query).filter().pagination(documentCount).sort().fields().search(modelName)
+    const apiFeatures = new ApiFeatures(model.find(filter), req.query).filter().paginate(documentCount).sort().limitFields().search(modelName)
     const { mongooseQuery, paginationResult } = apiFeatures;
         // Execute Query
     const documents = await mongooseQuery;
