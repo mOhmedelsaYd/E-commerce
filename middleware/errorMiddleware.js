@@ -1,4 +1,4 @@
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 const handleJwtInvalidSignature = () => new ApiError('Invalid Token, Please login again ....', 401);
 const handleJwtEpire = () => new ApiError('Expire Token, Please login again ....', 401);
 
