@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const asyncHandler = require('express-async-handler');
 const factory = require('./handlerFactory');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 
 const User = require('../models/userModel');
 const Product = require('../models/productModel');
