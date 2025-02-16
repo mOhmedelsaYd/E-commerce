@@ -119,47 +119,51 @@ exports.updateOrderToDelivered = asyncHandler(async (req, res, next) => {
 // @desc    Get checkout session from stripe and send it as response
 // @route   GET /api/v1/orders/checkout-session/cartId
 // @access  Protected/User
+
+
 exports.checkoutSession = asyncHandler(async (req, res, next) => {
   // app settings
   const taxPrice = 0;
   const shippingPrice = 0;
 
-  // 1) Get cart depend on cartId
+  // 1) Get cart based on cartId
   const cart = await Cart.findById(req.params.cartId);
   if (!cart) {
-    return next(
-      new ApiError(`There is no such cart with id ${req.params.cartId}`, 404)
-    );
+    return next(new ApiError(`There is no such cart with id ${req.params.cartId}`, 404));
   }
 
-  // 2) Get order price depend on cart price "Check if coupon apply"
-  const cartPrice = cart.totalPriceAfterDiscount
-    ? cart.totalPriceAfterDiscount
-    : cart.totalCartPrice;
+  // 2) Get order price based on cart price (Check if coupon is applied)
+  const cartPrice = cart.totalPriceAfterDiscount ? cart.totalPriceAfterDiscount : cart.totalCartPrice;
+  const totalOrderPrice = Math.round((cartPrice + taxPrice + shippingPrice) * 100); // Convert to cents
 
-  const totalOrderPrice = cartPrice + taxPrice + shippingPrice;
-
-  // 3) Create stripe checkout session
+  // 3) Create Stripe checkout session
   const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "payment",
     line_items: [
       {
-        name: req.user.name,
-        amount: totalOrderPrice * 100,
-        currency: 'egp',
+        price_data: {
+          currency: "egp",
+          product_data: {
+            name: "Cart Order",
+          },
+          unit_amount: totalOrderPrice, // Must be an integer (cents)
+        },
         quantity: 1,
       },
     ],
-    mode: 'payment',
-    success_url: `${req.protocol}://${req.get('host')}/orders`,
-    cancel_url: `${req.protocol}://${req.get('host')}/cart`,
+    success_url: `${req.protocol}://${req.get("host")}/orders`,
+    cancel_url: `${req.protocol}://${req.get("host")}/cart`,
     customer_email: req.user.email,
     client_reference_id: req.params.cartId,
-    metadata: req.body.shippingAddress,
+    metadata: req.body.shippingAddress
+      ? { shippingAddress: JSON.stringify(req.body.shippingAddress) }
+      : {},
   });
 
-  // 4) send session to response
-  res.status(200).json({ status: 'success', session });
+  res.status(200).json({ status: "success", session });
 });
+
 
 const createCardOrder = async (session) => {
   const cartId = session.client_reference_id;
