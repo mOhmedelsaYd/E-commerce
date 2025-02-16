@@ -119,8 +119,6 @@ exports.updateOrderToDelivered = asyncHandler(async (req, res, next) => {
 // @desc    Get checkout session from stripe and send it as response
 // @route   GET /api/v1/orders/checkout-session/cartId
 // @access  Protected/User
-
-
 exports.checkoutSession = asyncHandler(async (req, res, next) => {
   // app settings
   const taxPrice = 0;
