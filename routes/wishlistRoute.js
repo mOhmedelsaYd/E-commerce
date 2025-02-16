@@ -16,4 +16,4 @@ router.route('/').post(addProductToWishlist).get(getLoggedUserWishlist);
 
 router.delete('/:productId', removeProductFromWishlist);
 
-module.exports = router;
+module.exports = router; 
