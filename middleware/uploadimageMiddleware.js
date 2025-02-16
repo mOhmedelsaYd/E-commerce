@@ -1,5 +1,5 @@
 const multer = require('multer');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 
 const multerOptions = () => {
         // 1- diskStorage save picture as file

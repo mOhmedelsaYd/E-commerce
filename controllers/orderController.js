@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const asyncHandler = require('express-async-handler');
 const factory = require('./handlerFactory');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 
 const User = require('../models/userModel');
 const Product = require('../models/productModel');
@@ -214,7 +214,8 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
   }
   if (event.type === 'checkout.session.completed') {
     //  Create order
-    createCardOrder(event.data.object);
+    // createCardOrder(event.data.object);
+    console.log('created order')
   }
 
   res.status(200).json({ received: true });

@@ -1,7 +1,7 @@
 const slugify = require('slugify');
 const subCategoryModel = require('../models/subCategoryModel');
 const asyncHandler = require('express-async-handler');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 const ApiFeatures = require('../utils/apiFeatures');
 const factory = require('./handlerFactory');
 
