@@ -1,7 +1,3 @@
-That's great! Since the project is deployed, users can directly test the project by using the **Postman** link you provided. Here's an updated version of the **README** file that indicates that the project is deployed and can be tested directly via Postman:
-
----
-
 # E-commerce Project
 
 This is a full-fledged **E-commerce** application built using the **Node.js** and **MERN** stack. It features essential functionalities like user authentication, product management, shopping cart, payment integration with **Stripe**, and security measures to protect against various attacks.
