@@ -68,7 +68,7 @@ Make sure you have the following installed:
    npm run start:dev
    ```
 
-   The server should now be running on `http://localhost:5000`.
+   The server should now be running on `http://localhost:8000`.
 
 ## Usage
 
