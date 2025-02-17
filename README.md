@@ -59,29 +59,26 @@ Make sure you have the following installed:
    STRIPE_SECRET_KEY=your_stripe_secret_key
    ```
 
-5. Start the development server:
+5. Start the development server on port 8000:
    ```bash
-   npm run start:dev
+   npm start
    ```
 
    The server should now be running on `http://localhost:8000`.
 
 ## Usage
 
-### Using Postman to Test API
+### 1. **Test API Locally**
 
-If the project is deployed, you can directly test the API by using the **Postman** collection shared below. The collection allows you to interact with the deployed project without needing to set it up locally.
+Once the application is running locally, you can interact with the API by making requests to `http://localhost:8000`. You can test the various API endpoints by using tools like **Postman** or **curl**.
 
-1. **Set up Postman**:
-   - Install **Postman** from [here](https://www.postman.com/downloads/).
-   - Open **Postman** and import the provided collection.
+### 2. **Test API Using Postman Documentation**
 
-2. **Test API Endpoints**:
-   After deploying the app, you can use the following Postman collection to test the API endpoints remotely. Just click the link below:
+Alternatively, you can directly test the deployed project API by using the Postman documentation. Simply click the link below to access the interactive API documentation and test it without setting it up locally:
 
-   [Test the Project API on Postman](https://www.postman.com/depi-team-1582/workspace/my-workspace/collection/31981755-13336574-1f2f-4838-9524-b2e797a370c0?action=share&creator=31981755&active-environment=31981755-c98099c7-05b2-4e18-954c-8f874ac1e120)
+[View and Test the Project API Documentation](https://documenter.getpostman.com/view/31981755/2sAYXFhH97)
 
-   This collection includes all the necessary API calls to interact with the deployed project.
+The Postman documentation includes all the necessary API calls to interact with the deployed project.
 
 ## Security Features
 
@@ -97,7 +94,3 @@ Feel free to fork this repository, create a branch, and submit a pull request wi
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-This version of the **README** includes the link to your deployed **Postman collection**, allowing users to directly test the API without any setup. Let me know if you need anything else!
